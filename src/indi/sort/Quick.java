@@ -9,19 +9,20 @@ public class Quick {
     }
 
     private static void sort(Comparable[] arr, int left, int right) {
-//        if (left >= right) {
-//            return;
-//        }
-        if (right - left <= 15) {
-            Insertion.sort(arr, left, right);
+        if (left >= right) {
+            return;
         }
+//        if (right - left <= 15) {
+//            Insertion.sort(arr, left, right);
+//        }
         int p = partition(arr, left, right);
         sort(arr, left, p - 1);
         sort(arr, p + 1, right);
     }
 
     private static int partition(Comparable[] arr, int left, int right) {
-        Random random = new Random(System.currentTimeMillis());
+        // 随机化标定元素，避免了近乎有序的数组带来的最差时间复杂度 O(n^2)
+        Random random = new Random();
         SortUtil.swap(arr, left, random.nextInt(right + 1) % (right - left + 1) + left);
         Comparable v = arr[left];
         int i = left + 1;
@@ -29,7 +30,8 @@ public class Quick {
 
         while (true) {
             while (i <= right && SortUtil.less(arr[i], v)) i ++;
-            while (j >= left && !SortUtil.less(arr[j], v)) j --;
+            // left 已经被占领了，所以 j >= left + 1
+            while (j >= left + 1 && arr[j].compareTo(v) > 0) j --;
             if (i >= j) break;
             SortUtil.swap(arr, i, j);
             i ++;
@@ -62,7 +64,7 @@ public class Quick {
                 SortUtil.swap(arr, i, lt + 1);
                 lt ++;
                 i ++;
-            } else if (!SortUtil.less(arr[i], v) && !arr[i].equals(v)) {
+            } else if (arr[i].compareTo(v) > 0) {
                 SortUtil.swap(arr, i, gt - 1);
                 gt --;
             } else {
@@ -75,9 +77,11 @@ public class Quick {
     }
 
     public static void main(String[] args) {
-        Integer[] arr = SortUtil.generateRandomArray(100,0,100);
-        sort3Ways(arr);
+        Integer[] arr = SortUtil.generateRandomArray(1000,0,1000);
+//        sort3Ways(arr);
+        sort(arr);
         System.out.println(SortUtil.isSorted(arr));
         SortUtil.printArr(arr);
     }
+
 }

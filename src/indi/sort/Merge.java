@@ -1,7 +1,5 @@
 package indi.sort;
 
-import java.util.Arrays;
-
 public class Merge {
 
     private static Comparable[] aux;
@@ -11,7 +9,7 @@ public class Merge {
         aux = new Comparable[length];
         mergeHelper(arr, 0, length - 1);
     }
-
+    // 自底向上
     public static void sortBU(Comparable[] arr) {
         // 进行 lgN 次两两归并
         int N = arr.length;
@@ -75,4 +73,5 @@ public class Merge {
         System.out.println(SortUtil.isSorted(arr));
         SortUtil.printArr(arr);
     }
+
 }

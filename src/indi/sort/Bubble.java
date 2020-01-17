@@ -1,7 +1,7 @@
 package indi.sort;
 
 /**
- * @Description 冒泡【排序
+ * @Description 冒泡排序
  * @Date 2020/1/17 14:30
  * @Author yxin
  **/

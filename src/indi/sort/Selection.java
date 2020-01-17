@@ -6,7 +6,8 @@ public class Selection {
         int length = arr.length;
         for (int i = 0; i < length;i ++) {
             int minIndex = i;
-            for (int j = i;j < length;j ++) {
+            // 实际上这个 j 可以从 i 的下一个值开始遍历
+            for (int j = i + 1;j < length;j ++) {
                 if (SortUtil.less(arr[j], arr[minIndex])) {
                     minIndex = j;
                 }
