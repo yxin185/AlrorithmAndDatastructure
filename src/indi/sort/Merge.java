@@ -34,8 +34,8 @@ public class Merge {
         int mid = left + (right - left) / 2;
         mergeHelper(arr, left, mid);
         mergeHelper(arr, mid + 1, right);
-        // 优化思路：当中间的数小于后面第一个数时，就不需要 merge
-        if (!SortUtil.less(arr[mid], arr[mid + 1]))
+        // 优化思路：当中间的数小于等于后面第一个数时，就不需要 merge
+        if (arr[mid].compareTo(arr[mid + 1]) > 0)
             merge(arr, left, mid, right);
     }
 

@@ -2,7 +2,8 @@ package indi.sort;
 
 import java.util.Random;
 
-public class Quick {
+public class
+Quick {
 
     public static void sort(Comparable[] arr) {
         sort(arr, 0, arr.length - 1);
